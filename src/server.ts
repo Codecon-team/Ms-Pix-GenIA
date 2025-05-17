@@ -1,3 +1,4 @@
+import './config/dotenv/load-env';
 import express, {Application} from "express";
 import { env } from "./config/dotenv/dotenv";
 import { logger } from "./config/logger/logger";

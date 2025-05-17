@@ -5,4 +5,8 @@ export default defineConfig({
   clean: true,
   format: 'esm',
   outDir: 'dist',
+  bundle: true,
+  splitting: false,
+  dts: true,
+  external: ['mercadopago'], // Evita bundle do MercadoPago
 })
