@@ -24,3 +24,15 @@ jobs:
 
             - name: instalação das dependencias
               run: npm install
+
+            - name: login dockerhub
+              uses: docker/login-action@v3.4.0
+              with:
+                username: ${{secrets.DOCKERHUB_USER}}
+                password: ${{secrets.DOCKERHUB_PWD}}
+
+            - name: build da imagem docker
+              run: docker build -t blackvsk/genia:MS .
+
+            - name: push da imagem para o Docker Hub
+              run: docker push blackvsk/genia:MS
