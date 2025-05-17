@@ -1,0 +1,44 @@
+{
+  "name": "ms-pix-genia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Codecon-team/Ms-Pix-GenIA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Codecon-team/Ms-Pix-GenIA/issues"
+  },
+  "homepage": "https://github.com/Codecon-team/Ms-Pix-GenIA#readme",
+  "description": "",
+  "dependencies": {
+    "@mercadopago/sdk-js": "^0.0.3",
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^22.15.18",
+    "@types/uuid": "^10.0.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mercadopago": "^2.7.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "uuid": "^11.1.0",
+    "z": "^1.0.9"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2"
+  }
+}
