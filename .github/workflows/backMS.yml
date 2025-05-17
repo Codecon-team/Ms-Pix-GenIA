@@ -1,0 +1,38 @@
+name:  Backend MS pipeline
+
+on:
+    push:
+        branches: [main]
+
+    pull_request:
+        branches: [main]
+
+jobs:
+    CI:
+        runs-on: ubuntu-22.04
+
+        steps:
+            - name: checkout do código
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
+
+            - name: escolhendo a versão do node
+              uses: actions/setup-node@v3.9.1
+              with:
+                node-version: "22"
+
+            - name: instalação das dependencias
+              run: npm install
+
+            - name: login dockerhub
+              uses: docker/login-action@v3.4.0
+              with:
+                username: ${{secrets.DOCKERHUB_USER}}
+                password: ${{secrets.DOCKERHUB_PWD}}
+
+            - name: build da imagem docker
+              run: docker build -t blackvsk/genia:MS .
+
+            - name: push da imagem para o Docker Hub
+              run: docker push blackvsk/genia:MS
