@@ -1,4 +1,4 @@
-import MercadoPagoConfig from 'mercadopago'
+import {MercadoPagoConfig} from 'mercadopago'
 import { v4 as uuidv4 } from 'uuid'
 import { AppError } from '../../errors/AppError'
 import { logger } from '../logger/logger'
@@ -9,7 +9,7 @@ if (!process.env.MERCADOPAGO_ACCESS_TOKEN) {
   logger.error({ message: 'Access token não foi definido no ambiente' })
 }
 
-const accessToken = env.MERCADOPAGO_ACCESS_TOKEN
+const accessToken = process.env.MERCADOPAGO_ACCESS_TOKEN
 const client = new MercadoPagoConfig({
   accessToken,
   options: {
