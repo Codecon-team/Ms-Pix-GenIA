@@ -12,6 +12,6 @@ app.use(express.json());
 app.use("/api", router);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
  logger.info(`Server is running on port ${PORT}`);
 });
