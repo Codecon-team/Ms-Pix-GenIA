@@ -59,7 +59,7 @@ jobs:
 
       - name: atualizando kubeconfig
         run: |
-          aws eks --region ${{ secrets.EKS_REGION }} update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }}
+          aws eks --region sa-east-1 update-kubeconfig --name GenIA-Cluster
 
       - name: Deploy EKS
         run: |
