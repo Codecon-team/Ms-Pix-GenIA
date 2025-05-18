@@ -38,6 +38,8 @@ jobs:
               run: docker push blackvsk/genia:MS
 
     CD:
+      
+      needs: CI
       runs-on: ubuntu-22.04
 
       steps:
