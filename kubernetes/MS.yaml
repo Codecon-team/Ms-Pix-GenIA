@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ms
+  template:
+    metadata:
+      labels:
+        app: ms
+    spec:
+      containers:
+      - name: ms-container
+        image: blackvsk/genia:MS
+
+        imagePullPolicy: Always 
+ 
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+        env:
+
+          - name: PORT
+            value: "3000"
+
+          - name: MERCADOPAGO_ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                  name: ms-secret
+                  key: MERCADOPAGO_ACCESS_TOKEN
+
+          - name: NODE_ENV
+            valueFrom:
+              secretKeyRef:
+                name: ms-secret
+                key: NODE_ENV
+
+          - name: MERCADOPAGO_PUBLIC_KEY
+            valueFrom:
+              secretKeyRef:
+                name: ms-secret
+                key: MERCADOPAGO_PUBLIC_KEY
+      
+          - name: MERCADOPAGO_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: ms-secret
+                key: MERCADOPAGO_CLIENT_ID
+
+          - name: MERCADOPAGO_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: ms-secret
+                key: MERCADOPAGO_CLIENT_SECRET      
+      
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-service
+spec:
+  selector:
+    app: ms
+  type: LoadBalancer
+  ports:
+  - protocol: "TCP"
+    port: 3001
+    targetPort: 3000
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ms-secret
+type: Opaque
+data:
+  NODE_ENV: ZGV2
+  MERCADOPAGO_ACCESS_TOKEN: QVBQX1VTUi02ODQ3ODE4ODE2NzQ1MjI3LTA1MjcxNy0xYjk4MzIxNmYyOGIzZjk1YTk5Y2QwYmJkZmQ0ODdmYy0yNzkxMzQ1MDc=
+  PORT: "3000"
+  MERCADOPAGO_PUBLIC_KEY: ""
+  MERCADOPAGO_CLIENT_ID: ""
+  MERCADOPAGO_CLIENT_SECRET: ""
