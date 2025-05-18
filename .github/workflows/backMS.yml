@@ -64,4 +64,3 @@ jobs:
       - name: Deploy EKS
         run: |
           kubectl apply -f /kubernetes/MS.yaml  
-          kubectl rollout status deployment/ms-deployment
